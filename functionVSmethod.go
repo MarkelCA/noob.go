@@ -1,21 +1,20 @@
 package main
 
-import(
-    "fmt"
-)
+import("fmt")
 
-type mytype []int
+type myArray [3]int
 
-func (p *mytype) testMethod() {
+
+func (p *myArray) testMethod() {
     (*p)[2] = 44
 }
 
-func testFunction(p *mytype) {
+func testFunction(p *myArray) {
     (*p)[2] = 55
 }
 
 func main() {
-    p := mytype([]int{1, 2, 3})
+    p := myArray([3]int{1, 2, 3})
 
     // The method permits to run with the reciever as a pointer
     p.testMethod()
