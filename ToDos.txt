@@ -1,0 +1,5 @@
+# To dos
+
+- [ ] Function closures
+- [X] Understand slice pointers *SlicePointers.go*
+- [X] Method
