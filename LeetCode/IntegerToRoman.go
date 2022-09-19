@@ -1,57 +1,46 @@
 package main
 
-import ("fmt" ; "sort")
+import ("fmt" ; "strings")
 
-var possibleRunes = map[string]int {
-    "I"  : 1,
-    "IV" : 4,
-    "V"  : 5,
-    "IX" : 9,
-    "X"  : 10,
-    "XL" : 40,
-    "L"  : 50,
-    "XC" : 90,
-    "C"  : 100,
-    "CD" : 400,
-    "D"  : 500,
-    "CM" : 900,
-    "M"  : 1000,
-}
-
-type kv struct {
-    Key   string
+type roman struct {
+    Letter   string
     Value int
 }
-
-func order(m map[string]int) (result []kv) {
-    for k, v := range m {
-        result = append(result, kv{k, v})
-    }
-
-    sort.Slice(result, func(i, j int) bool {
-        return result[i].Value > result[j].Value
-    })
-
-    return result
+var runes = []roman {
+    roman{"M" ,  1000 },
+    roman{"CM",  900 },
+    roman{"D" ,  500 },
+    roman{"CD",  400 },
+    roman{"C" ,  100 },
+    roman{"XC",  90 },
+    roman{"L" ,  50 },
+    roman{"XL",  40 },
+    roman{"X" ,  10 },
+    roman{"IX",  9  },
+    roman{"V" ,  5  },
+    roman{"IV",  4  },
+    roman{"I" ,  1  },
 }
 
+
+
 func main() {
-    n := 3
+    n := 20
     fmt.Println( intToRoman(n) )
 } 
 
 func intToRoman(num int) (result string) {
-    orderedRunes  := order(possibleRunes)
-
     for num > 0 {
-        for _,o := range orderedRunes {
-            if num >= o.Value {
-                result += o.Key
-                num -= o.Value
+        for _,r := range runes {
+            if num >= r.Value {
+                times := num / r.Value
+                val   := times * r.Value
+
+                result += strings.Repeat(r.Letter, times)
+                num    -= val
             }
         }
     }
 
     return result
-    
 }
