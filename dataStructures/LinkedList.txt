@@ -1,0 +1,6 @@
+# Linked List
+
+## Notes
+
+- **O(n)** time complexity on reads.
+- **O(1)** time complexity on insertions/deletions at the head of the list (and the tail if it's double linked).
