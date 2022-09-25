@@ -21,19 +21,6 @@ func (l *linkedlist) prependAll(vals ...int) {
     }
 }
 
-func (l *linkedlist) appendEnd(val int) {
-    if l.head == nil {
-        l.head = &node{value:val}
-    } else {
-        currentNode := l.head
-        for currentNode.next != nil {
-            currentNode =  currentNode.next
-        }
-
-        currentNode.next = &node{value:val}
-    }
-}
-
 func (l linkedlist) printList() {
     currentNode := l.head
     for currentNode != nil {
@@ -123,19 +110,12 @@ func main () {
     l.deleteWithValue(0, true)
 
     l.printList()
-
-    fmt.Println()
-    l.appendEnd(2)
-    l.printList()
-    //index, value := l.getMiddle()
-    //fmt.Printf("\nThe middle is: %d. Index: %d", value, index)
-
-    //l.appendEnd(2)
-    //fmt.Printf("\nThe middle is: %d. Index: %d", value, index)
+    index, value := l.getMiddle()
+    fmt.Printf("\nThe middle is: %d. Index: %d", value, index)
 
     /// Palindrome
-    //isPalindrome := l.isPalindrome()
-    //fmt.Printf("\nIs Palindrome: %v", isPalindrome)
+    isPalindrome := l.isPalindrome()
+    fmt.Printf("\nIs Palindrome: %v", isPalindrome)
 
     
 
