@@ -44,6 +44,20 @@ Executed in    9,33 secs   fish           external
    sys time    0,02 secs  804,00 micros    0,02 secs
 ```
 
+### Java
+Command:
+```bash
+time java fac.java
+```
+Output:
+```
+Executed in   20,26 mins   fish           external 
+   usr time  1258,22 secs  401,00 micros  1258,22 secs 
+   sys time   13,83 secs  120,00 micros   13,83 secs 
+
+```
+I'm not sure why it took so long comparing to Python
+
 ## CPU
 Just for the record. My CPU specifications is the following.
 ```
