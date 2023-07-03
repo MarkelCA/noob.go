@@ -63,6 +63,9 @@ func main() {
 	}
 }
 
+// Sets the passed value to slice[0] position
+// and pushes the rest of the values one position
+// to the right.
 func swap(slice []int, val int) {
 	aux := 0
 	for i, x := range slice {
