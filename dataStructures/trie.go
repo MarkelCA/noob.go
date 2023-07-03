@@ -2,7 +2,21 @@ package main
 
 import (
     "fmt"
+    "net/http"
 )
+
+func Add(x, y int) (res int) {
+	return x + y
+}
+
+// Routes interface implementation using a Radix
+// trie data structure
+type TrieRoutes Trie
+
+func NewTrieRoutes() TrieRoutes {
+    trie := NewTrie()
+    return TrieRoutes{trie.root}
+}
 
 type Trie struct {
 	root *node
@@ -11,6 +25,7 @@ type Trie struct {
 type node struct {
 	children map[rune]*node
 	isEnd    bool
+    handler  map[httpMethod]*http.HandlerFunc
 }
 
 func NewTrie() *Trie {
@@ -18,17 +33,19 @@ func NewTrie() *Trie {
 		root: &node{
 			children: make(map[rune]*node),
 			isEnd:    false,
+            handler:  nil,
 		},
 	}
 }
 
-func (t *Trie) Insert(word string) {
+func (t *Trie) Insert(word string, h http.HandlerFunc) {
 	currentNode := t.root
 	for _, c := range word {
 		if _, ok := currentNode.children[c]; !ok {
 			currentNode.children[c] = &node{
 				children: make(map[rune]*node),
 				isEnd:    false,
+                handler:  nil,
 			}
 		}
 		currentNode = currentNode.children[c]
@@ -73,11 +90,13 @@ func (t *Trie) printHelper(node *node, word []rune) {
 
 func main () {
     trie := NewTrie()
-    trie.Insert("apple")
-    trie.Insert("application")
+    handler := func(w http.ResponseWriter, r *http.Request) {}
+    trie.Insert("apple", handler)
+    trie.Insert("application", handler)
 
     trie.Print()
 
     fmt.Println(trie.Search("app"))
     fmt.Println(trie.StartsWith("app"))
 }
+

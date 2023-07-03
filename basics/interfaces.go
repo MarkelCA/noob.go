@@ -12,10 +12,6 @@ func Walk(w Walker) {
     fmt.Println("Walking...")
 }
 
-// The following function is illegal (https://stackoverflow.com/questions/65440847/invalid-receiver-for-pointer-alias-type):
-//func (w Walker) walkV2() {
-    //fmt.Println("Walking v2...")
-//}
 
 type Animal struct {}
 
@@ -37,6 +33,10 @@ func main() {
     Walk(w)
 }
 
+// The following function is illegal (https://stackoverflow.com/questions/65440847/invalid-receiver-for-pointer-alias-type):
+//func (w Walker) walkV2() {
+    //fmt.Println("Walking v2...")
+//}
 
 // Pointers & Interfaces as receiver types - Why the design choice. (ChatGPT answer)
 //The design choice of disallowing pointers and interfaces as receiver base types in Go was made for several reasons.
