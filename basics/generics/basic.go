@@ -31,6 +31,7 @@ func GenericUserIdAdd[T UserId](x, y T) T {
     return x + y
 }
 
+
 func main() {
     x := MyInt(1)
     y := MyInt(2)
@@ -45,5 +46,14 @@ func main() {
     //fmt.Printf("Result: %v", GenericAdd(1.1, 6))
 
     fmt.Printf("Result: %v\n", GenericUserIdAdd(uint(676), uint(6664)))
+
+    //////////
+
+    result := MapValues([]float64{1.1, 2.2, 3.3}, func(n float64) float64 {
+        return n * 2
+    })
+
+    fmt.Printf("result: %v", result)
+
 
 }
